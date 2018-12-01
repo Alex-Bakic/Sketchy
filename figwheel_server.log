@@ -1,0 +1,5 @@
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.023 seconds.[0m
+notifying browser that file changed:  resources/public/js/goog/deps.js
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/core.js
