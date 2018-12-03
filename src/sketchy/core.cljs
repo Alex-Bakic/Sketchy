@@ -1,13 +1,12 @@
 (ns sketchy.core
   (:require [clojure.string :as string]
-            [reagent.core :as r]))
-
-(enable-console-print!)
+            [reagent.core :as r]
+            [alandipert.storage-atom :refer [local-storage]]))
 
 ;; The db
 (def app-state
-  (r/atom
-    {:ideas []}))
+  (local-storage (r/atom
+    {:ideas []})))
 
 ;; db functions
 (defn update-ideas! [f & args]
