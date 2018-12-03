@@ -3,8 +3,8 @@
                  [org.clojure/clojurescript "1.10.439"]
                  [reagent "0.8.1"]
                  [re-frame "0.10.6"]
-                 [bidi "2.1.4"]]
-
+                 [bidi "2.1.4"]
+                 [alandipert/storage-atom "2.0.1"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel  "0.5.17"]]
