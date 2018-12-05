@@ -8,8 +8,8 @@ while(true){
 if((cnt < len)){
 (dest[(dest_start + cnt)] = (src[(src_start + cnt)]));
 
-var G__22691 = (cnt + (1));
-cnt = G__22691;
+var G__22832 = (cnt + (1));
+cnt = G__22832;
 continue;
 } else {
 return null;
@@ -113,14 +113,14 @@ var n__4518__auto__ = self__.length;
 var x = (0);
 while(true){
 if((x < n__4518__auto__)){
-var v_22692 = this$.pop();
-if(keep_QMARK_.call(null,v_22692)){
-this$.unshift(v_22692);
+var v_22833 = this$.pop();
+if(keep_QMARK_.call(null,v_22833)){
+this$.unshift(v_22833);
 } else {
 }
 
-var G__22693 = (x + (1));
-x = G__22693;
+var G__22834 = (x + (1));
+x = G__22834;
 continue;
 } else {
 return null;
@@ -463,4 +463,4 @@ cljs.core.async.impl.buffers.promise_buffer = (function cljs$core$async$impl$buf
 return (new cljs.core.async.impl.buffers.PromiseBuffer(cljs.core.async.impl.buffers.NO_VAL));
 });
 
-//# sourceMappingURL=buffers.js.map?rel=1543683799204
+//# sourceMappingURL=buffers.js.map?rel=1544001706657

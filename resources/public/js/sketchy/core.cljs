@@ -1,81 +1,60 @@
 (ns sketchy.core
   (:require [clojure.string :as string]
-            [reagent.core :as r]))
+            [reagent.core :as r]
+            [alandipert.storage-atom :refer [local-storage]]))
 
-(enable-console-print!)
-
-;; The "database" of your client side UI.
+;; The db
 (def app-state
-  (atom
-   {:contacts
-    [{:first "Ben" :last "Bitdiddle" :email "benb@mit.edu"}
-     {:first "Alyssa" :middle-initial "P" :last "Hacker" :email "aphacker@mit.edu"}
-     {:first "Eva" :middle "Lu" :last "Ator" :email "eval@mit.edu"}
-     {:first "Louis" :last "Reasoner" :email "prolog@mit.edu"}
-     {:first "Cy" :middle-initial "D" :last "Effect" :email "bugs@mit.edu"}
-     {:first "Lem" :middle-initial "E" :last "Tweakit" :email "morebugs@mit.edu"}]}))
+  (local-storage (r/atom {:ideas []}) :ideas))
 
-(defn update-contacts! [f & args]
-  (apply swap! app-state update-in [:contacts] f args))
+;; db functions
+(defn update-ideas! [f & args]
+  (apply swap! app-state update-in [:ideas] f args))
 
-(defn add-contact! [c]
-  (update-contacts! conj c))
+(defn add-idea! [i]
+  (update-ideas! conj i))
 
-(defn remove-contact! [c]
-  (update-contacts! (fn [cs]
-                      (vec (remove #(= % c) cs)))
-                    c))
+(defn remove-idea! [i]
+  (update-ideas! (fn [is]
+                      (vec (remove #(= % i) is)))
+                    i))
 
-;; The next three fuctions are copy/pasted verbatim from the Om tutorial
-(defn middle-name [{:keys [middle middle-initial]}]
-  (cond
-   middle (str " " middle)
-   middle-initial (str " " middle-initial ".")))
 
-(defn display-name [{:keys [first last] :as contact}]
-  (str last ", " first (middle-name contact)))
-
-(defn parse-contact [contact-str]
-  (let [[first middle last :as parts] (string/split contact-str #"\s+")
-        [first last middle] (if (nil? last) [first middle] [first last middle])
-        middle (when middle (string/replace middle "." ""))
-        c (if middle (count middle) 0)]
-    (when (>= (reduce + (map #(if % 1 0) parts)) 2)
-      (cond-> {:first first :last last}
-        (== c 1) (assoc :middle-initial middle)
-        (>= c 2) (assoc :middle middle)))))
-
-;; UI components
-(defn contact [c]
-  [:li
-   [:span (display-name c)]
-   [:button {:on-click #(remove-contact! c)} 
+;;<button type="button" class="btn btn-default" aria-label="Left Align">
+;;<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+;;</button>
+;; UI components (views)
+(defn show-idea [i]
+  [:p
+   [:span i]
+   [:button  {:class "btn btn-default" :aria-label="Left Align" :on-click #(remove-idea! i)} 
     "Delete"]])
 
-(defn new-contact []
+(defn new-idea []
   (let [val (r/atom "")]
     (fn []
-      [:div
+      [:div#new-idea
        [:input {:type "text"
-                :placeholder "Contact Name"
+                :placeholder "Enter some ideas you have"
                 :value @val
                 :on-change #(reset! val (-> % .-target .-value))}]
-       [:button {:on-click #(when-let [c (parse-contact @val)]
-                              (add-contact! c)
+       [:button {:class "btn btn-default" :aria-label= "Left-Align" 
+                 :on-click #(when-let [i @val]
+                              (add-idea! i)
                               (reset! val ""))}
-        "Add"]])))
+        [:span {:class="glyphicon glyphicon-plus" :aria-hidden "true"}]]])))
 
-(defn contact-list []
-  [:div
-   [:h1 "Contact list"]
+(defn ideas-list []
+  [:div#ideas-list
+   [:h1 "All of your ideas"]
    [:ul
-    (for [c (:contacts @app-state)]
-      [contact c])]
-   [new-contact]])
+    (for [i (:ideas @app-state)]
+      [show-idea i])]
+   [new-idea]])
 
 ;; Render the root component
 ;; "root" is the id of the div that holds all the 
 (defn start []
   (r/render-component 
-   [contact-list]
+   [ideas-list]
 (.getElementById js/document "root")))
