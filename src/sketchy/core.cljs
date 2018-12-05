@@ -5,8 +5,7 @@
 
 ;; The db
 (def app-state
-  (local-storage (r/atom
-    {:ideas []})))
+  (local-storage (r/atom {:ideas []}) :ideas))
 
 ;; db functions
 (defn update-ideas! [f & args]
@@ -20,32 +19,34 @@
                       (vec (remove #(= % i) is)))
                     i))
 
+
 ;; UI components (views)
 (defn show-idea [i]
-  [:li
+  [:p
    [:span i]
-   [:button {:on-click #(remove-idea! i)} 
+   [:button  {:class "btn btn-default" :aria-label="Left Align" :on-click #(remove-idea! i)} 
     "Delete"]])
 
 (defn new-idea []
   (let [val (r/atom "")]
     (fn []
-      [:div
+      [:div#new-idea
        [:input {:type "text"
                 :placeholder "Enter some ideas you have"
                 :value @val
                 :on-change #(reset! val (-> % .-target .-value))}]
-       [:button {:on-click #(when-let [i @val]
+       [:button {:class "btn btn-default" :aria-label= "Left-Align" 
+                 :on-click #(when-let [i @val]
                               (add-idea! i)
                               (reset! val ""))}
-        "Add"]])))
+        [:span {:class="glyphicon glyphicon-plus" :aria-hidden "true"}]]])))
 
 (defn ideas-list []
-  [:div
+  [:div#ideas-list
    [:h1 "All of your ideas"]
    [:ul
     (for [i (:ideas @app-state)]
-      [contact i])]
+      [show-idea i])]
    [new-idea]])
 
 ;; Render the root component
@@ -54,3 +55,4 @@
   (r/render-component 
    [ideas-list]
 (.getElementById js/document "root")))
+
