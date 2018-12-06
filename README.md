@@ -1,6 +1,8 @@
 # Sketchy
 Fun little spin on the todomvc, specific to comedy sketches and ideas.
 
+To run, clone or download the repo and cd into the `Sketchy` directory and type `lein figwheel` then go to the address shown.
+
 At the moment the structure of this project looks like:
 
   ```
