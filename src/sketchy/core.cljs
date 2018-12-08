@@ -21,10 +21,10 @@
 
 ;; components
 (defn current-count []
-  (let [counter @(rf/subscribe [:count])]
+  (let [counter (rf/subscribe [:count])]
     (fn []
       [:div 
-        [:span counter]])))
+        [:span @counter]])))
 
 (defn add-count-btn []
   (fn [] 
