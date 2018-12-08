@@ -1,58 +1,43 @@
 (ns sketchy.core
-  (:require [clojure.string :as string]
-            [reagent.core :as r]
-            [alandipert.storage-atom :refer [local-storage]]))
+  (:require [reagent.core :as r]
+            [re-frame.core :as rf]))
 
-;; The db
-(def app-state
-  (local-storage (r/atom {:ideas []}) :ideas))
+;; first need to define the state
 
-;; db functions
-(defn update-ideas! [f & args]
-  (apply swap! app-state update-in [:ideas] f args))
+(rf/reg-event-db
+  :initialise
+  (fn [_ _]
+     {:count 0}))
 
-(defn add-idea! [i]
-  (update-ideas! conj i))
+(rf/reg-event-db
+  :update-counter
+   (fn [db _]
+      (update db :count inc)))
 
-(defn remove-idea! [i]
-  (update-ideas! (fn [is]
-                      (vec (remove #(= % i) is)))
-                    i))
+(rf/reg-sub
+  :count
+  (fn [db _]
+    (:count db)))
 
-
-;; UI components (views)
-(defn show-idea [i]
-  [:p
-   [:span i]
-   [:button  {:class "btn btn-default" :aria-label="Left Align" :on-click #(remove-idea! i)} 
-    "Delete"]])
-
-(defn new-idea []
-  (let [val (r/atom "")]
+;; components
+(defn current-count []
+  (let [counter @(rf/subscribe [:count])]
     (fn []
-      [:div#new-idea
-       [:input {:type "text"
-                :placeholder "Enter some ideas you have"
-                :value @val
-                :on-change #(reset! val (-> % .-target .-value))}]
-       [:button {:class "btn btn-default" :aria-label= "Left-Align" 
-                 :on-click #(when-let [i @val]
-                              (add-idea! i)
-                              (reset! val ""))}
-        [:span {:class="glyphicon glyphicon-plus" :aria-hidden "true"}]]])))
+      [:div 
+        [:span counter]])))
 
-(defn ideas-list []
-  [:div#ideas-list
-   [:h1 "All of your ideas"]
-   [:ul
-    (for [i (:ideas @app-state)]
-      [show-idea i])]
-   [new-idea]])
+(defn add-count-btn []
+  (fn [] 
+    [:div
+      [:button {:on-click #(rf/dispatch [:update-counter])}
+        "Increment Counter"]]))
 
-;; Render the root component
-;; "root" is the id of the div that holds all the 
-(defn start []
-  (r/render-component 
-   [ideas-list]
-(.getElementById js/document "root")))
+(defn ui []
+   (fn [] 
+     [:div
+       [current-count]
+       [add-count-btn]]))
 
+(defn ^:export start []
+  (rf/dispatch-sync [:initialise])
+  (r/render [ui] (.getElementById js/document "root")))
