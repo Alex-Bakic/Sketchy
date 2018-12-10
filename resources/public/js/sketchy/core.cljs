@@ -1,60 +1,79 @@
 (ns sketchy.core
-  (:require [clojure.string :as string]
-            [reagent.core :as r]
-            [alandipert.storage-atom :refer [local-storage]]))
+  (:require [reagent.core :as r]
+            [re-frame.core :as rf]))
 
-;; The db
-(def app-state
-  (local-storage (r/atom {:ideas []}) :ideas))
+;; first we need to define the db and the application state
+(rf/reg-event-db
+  :initialise
+  (fn [_ _]
+    {:ideas []}))
 
-;; db functions
-(defn update-ideas! [f & args]
-  (apply swap! app-state update-in [:ideas] f args))
+;
+;; -- Event handlers
+;
 
-(defn add-idea! [i]
-  (update-ideas! conj i))
+;; need a handler to specify adding the idea
+(rf/reg-event-db
+  :add-idea
+  (fn [db [_ idea]]
+    (update-in db [:ideas] conj idea)))
 
-(defn remove-idea! [i]
-  (update-ideas! (fn [is]
-                      (vec (remove #(= % i) is)))
-                    i))
+;; need a handler to remove an idea from the list too
+(defn remove-idea
+  [is i]
+  (filterv (complement #(= % i)) is))
 
+(rf/reg-event-db
+  :remove-idea
+  (fn [db [_ idea]]
+    (update-in db [:ideas] remove-idea idea)))
 
-;;<button type="button" class="btn btn-default" aria-label="Left Align">
-;;<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-;;</button>
-;; UI components (views)
-(defn show-idea [i]
-  [:p
-   [:span i]
-   [:button  {:class "btn btn-default" :aria-label="Left Align" :on-click #(remove-idea! i)} 
-    "Delete"]])
+;  
+;; -- End of event handlers
+;
 
-(defn new-idea []
+;
+;; -- Subscriptions
+;
+
+;; monitors the ideas array, for any insertions or deletions
+(rf/reg-sub
+  :ideas
+  (fn [db _]
+    (:ideas db)))
+
+; 
+;; -- End of subscriptions
+;
+
+;
+;; -- Views
+;
+
+(defn pull-all-ideas [ideas]
+  [:p 
+   (for [i ideas ] i)])
+
+(defn add-idea-btn []
   (let [val (r/atom "")]
-    (fn []
-      [:div#new-idea
-       [:input {:type "text"
-                :placeholder "Enter some ideas you have"
-                :value @val
-                :on-change #(reset! val (-> % .-target .-value))}]
-       [:button {:class "btn btn-default" :aria-label= "Left-Align" 
-                 :on-click #(when-let [i @val]
-                              (add-idea! i)
-                              (reset! val ""))}
-        [:span {:class="glyphicon glyphicon-plus" :aria-hidden "true"}]]])))
+    [:div#add-ideas
+     [:input {:type "text"
+              :placeholder "add an idea"
+              :value @val
+              :on-change #(reset! val (-> % .-target .-value))}]
+     [:button {:on-click (rf/dispatch [:add-idea @val])}
+       "Add idea"]]))
 
-(defn ideas-list []
-  [:div#ideas-list
-   [:h1 "All of your ideas"]
-   [:ul
-    (for [i (:ideas @app-state)]
-      [show-idea i])]
-   [new-idea]])
+(defn ui []
+  [:div#app 
+   [add-idea-btn]
+   [:span 
+    [pull-all-ideas @(rf/subscribe [:ideas])]]])
 
-;; Render the root component
-;; "root" is the id of the div that holds all the 
-(defn start []
-  (r/render-component 
-   [ideas-list]
-(.getElementById js/document "root")))
+;
+;; -- End of views
+;
+(defn ^:export start []
+  (rf/dispatch-sync [:initialise])
+  (r/render [ui] (.getElementById js/document "root")))
+

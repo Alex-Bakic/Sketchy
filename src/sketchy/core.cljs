@@ -2,42 +2,78 @@
   (:require [reagent.core :as r]
             [re-frame.core :as rf]))
 
-;; first need to define the state
-
+;; first we need to define the db and the application state
 (rf/reg-event-db
   :initialise
   (fn [_ _]
-     {:count 0}))
+    {:ideas []}))
+
+;
+;; -- Event handlers
+;
+
+;; need a handler to specify adding the idea
+(rf/reg-event-db
+  :add-idea
+  (fn [db [_ idea]]
+    (update-in db [:ideas] conj idea)))
+
+;; need a handler to remove an idea from the list too
+(defn remove-idea
+  [is i]
+  (filterv (complement #(= % i)) is))
 
 (rf/reg-event-db
-  :update-counter
-   (fn [db _]
-      (update db :count inc)))
+  :remove-idea
+  (fn [db [_ idea]]
+    (update-in db [:ideas] remove-idea idea)))
 
+;  
+;; -- End of event handlers
+;
+
+;
+;; -- Subscriptions
+;
+
+;; monitors the ideas array, for any insertions or deletions
 (rf/reg-sub
-  :count
+  :ideas
   (fn [db _]
-    (:count db)))
+    (:ideas db)))
 
-;; components
-(defn current-count []
-  (let [counter (rf/subscribe [:count])]
-    (fn []
-      [:div 
-        [:span @counter]])))
+; 
+;; -- End of subscriptions
+;
 
-(defn add-count-btn []
-  (fn [] 
-    [:div
-      [:button {:on-click #(rf/dispatch [:update-counter])}
-        "Increment Counter"]]))
+;
+;; -- Views
+;
+
+(defn pull-all-ideas [ideas]
+  [:p 
+   (for [i ideas ] i)])
+
+(defn add-idea-btn []
+  (let [val (r/atom "")]
+    [:div#add-ideas
+     [:input {:type "text"
+              :placeholder "add an idea"
+              :value @val
+              :on-change #(reset! val (-> % .-target .-value))}]
+     [:button {:on-click (rf/dispatch [:add-idea @val])}
+       "Add idea"]]))
 
 (defn ui []
-   (fn [] 
-     [:div
-       [current-count]
-       [add-count-btn]]))
+  [:div#app 
+   [add-idea-btn]
+   [:span 
+    [pull-all-ideas @(rf/subscribe [:ideas])]]])
 
+;
+;; -- End of views
+;
 (defn ^:export start []
   (rf/dispatch-sync [:initialise])
   (r/render [ui] (.getElementById js/document "root")))
+
