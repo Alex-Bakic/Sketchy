@@ -69,4 +69,4 @@ re_frame.loggers.get_loggers = (function re_frame$loggers$get_loggers(){
 return cljs.core.deref.call(null,re_frame.loggers.loggers);
 });
 
-//# sourceMappingURL=loggers.js.map?rel=1544468015340
+//# sourceMappingURL=loggers.js.map?rel=1544535915700

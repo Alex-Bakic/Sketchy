@@ -18,7 +18,7 @@
   (fn [db [_ idea]]
     (update-in db [:ideas] conj idea)))
 
-;; need a handler to remove an idea from the list too
+;; need a handler to remove an idea from the vector too
 (defn remove-idea
   [is i]
   (filterv (complement #(= % i)) is))
@@ -49,31 +49,35 @@
 ;
 ;; -- Views
 ;
-
-(defn pull-all-ideas [ideas]
-  [:p 
-   (for [i ideas ] i)])
-
-(defn add-idea-btn []
+(defn new-idea []
   (let [val (r/atom "")]
-    [:div#add-ideas
-     [:input {:type "text"
-              :placeholder "add an idea"
-              :value @val
-              :on-change #(reset! val (-> % .-target .-value))}]
-     [:button {:on-click (rf/dispatch [:add-idea @val])}
-       "Add idea"]]))
+    (fn []
+      [:div#new-idea
+       [:input {:type "text"
+                :placeholder "Enter some ideas you have"
+                :value @val
+                :on-change #(reset! val (-> % .-target .-value))}]
+       [:button {:class "btn btn-default" 
+                 :on-click #(rf/dispatch [:add-idea @val])}
+        "Add"]])))
 
-(defn ui []
-  [:div#app 
-   [add-idea-btn]
-   [:span 
-    [pull-all-ideas @(rf/subscribe [:ideas])]]])
+(defn show-idea [i]
+  [:p
+   [:span i]
+   [:button  {:class "btn btn default" :on-click #(rf/dispatch [:remove-idea i])} 
+    "Delete"]])
 
+(defn ui [db]
+  [:div#ideas-list
+   [:h3 "All of your ideas"]
+   [new-idea]
+   [:ul
+    (for [i @db]
+      [show-idea i])]])
 ;
 ;; -- End of views
 ;
 (defn ^:export start []
   (rf/dispatch-sync [:initialise])
-  (r/render [ui] (.getElementById js/document "root")))
+  (r/render [ui (rf/subscribe [:ideas])] (.getElementById js/document "root")))
 

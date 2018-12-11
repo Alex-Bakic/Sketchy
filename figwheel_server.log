@@ -48,3 +48,124 @@ notifying browser that file changed:  resources/public/js/sketchy/core.js
 Compiling build :client to "resources/public/js/client.js" from ["src"]...
 [32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.997 seconds.[0m
 notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[36m----  Compiler Warning on   src/sketchy/core.cljs   line:55  column:22  ----[0m
+
+  [1mUse of undeclared Var sketchy.core/show-idea[0m
+
+  [36m51[0m  [36m;[0m
+  [36m52[0m  [36m[0m
+  [36m53[0m  [36m(defn pull-all-ideas [ideas][0m
+  [36m54[0m  [36m   [:div [0m
+  [33m55[0m  [1m    (for [i ideas ] [show-idea i])])[0m
+  [0m  [0m  [33m                     ^--- Use of undeclared Var sketchy.core/show-idea[0m
+  [36m56[0m  [36m[0m
+  [36m57[0m  [36m(defn show-idea [idea][0m
+  [36m58[0m  [36m  [:span idea])[0m
+  [36m59[0m  [36m[0m
+  [36m60[0m  [36m(defn add-idea-btn [][0m
+
+[36m----  Compiler Warning : Please see src/sketchy/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/sketchy/core.cljs   line:55  column:22  ----[0m
+
+  [1mUse of undeclared Var sketchy.core/show-idea[0m
+
+  [36m51[0m  [36m;[0m
+  [36m52[0m  [36m[0m
+  [36m53[0m  [36m(defn pull-all-ideas [ideas][0m
+  [36m54[0m  [36m   [:div [0m
+  [33m55[0m  [1m    (for [i ideas ] [show-idea i])])[0m
+  [0m  [0m  [33m                     ^--- Use of undeclared Var sketchy.core/show-idea[0m
+  [36m56[0m  [36m[0m
+  [36m57[0m  [36m(defn show-idea [idea][0m
+  [36m58[0m  [36m  [:span idea])[0m
+  [36m59[0m  [36m[0m
+  [36m60[0m  [36m(defn add-idea-btn [][0m
+
+[36m----  Compiler Warning : Please see src/sketchy/core.cljs  ----[0m
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.14 seconds.[0m
+notifying browser that file changed:  resources/public/js/goog/deps.js
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.966 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.992 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.936 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.935 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[36m----  Compiler Warning on   src/sketchy/core.cljs   line:62  column:5  ----[0m
+
+  [1mUse of undeclared Var sketchy.core/new-idea[0m
+
+  [36m58[0m  [36m   [:h1 "All of your ideas"][0m
+  [36m59[0m  [36m   [:ul[0m
+  [36m60[0m  [36m    (for [i ideas][0m
+  [36m61[0m  [36m      [show-idea i])][0m
+  [33m62[0m  [1m   [new-idea]])[0m
+  [0m  [0m  [33m    ^--- Use of undeclared Var sketchy.core/new-idea[0m
+  [36m63[0m  [36m[0m
+  [36m64[0m  [36m;; (defn pull-all-ideas [ideas][0m
+  [36m65[0m  [36m;;   [:ul (for [i ideas ] [show-idea i])])[0m
+  [36m66[0m  [36m[0m
+  [36m67[0m  [36m(defn add-idea-btn [][0m
+
+[36m----  Compiler Warning : Please see src/sketchy/core.cljs  ----[0m
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.987 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.938 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.93 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[36m----  Compiler Warning on   src/sketchy/core.cljs   line:83  column:14  ----[0m
+
+  [1mUse of undeclared Var sketchy.core/ui[0m
+
+  [36m79[0m  [36m;; -- End of views[0m
+  [36m80[0m  [36m;[0m
+  [36m81[0m  [36m(defn ^:export start [][0m
+  [36m82[0m  [36m  (rf/dispatch-sync [:initialise])[0m
+  [33m83[0m  [1m  (r/render [ui] (.getElementById js/document "root")))[0m
+  [0m  [0m  [33m             ^--- Use of undeclared Var sketchy.core/ui[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/core.cljs  ----[0m
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.947 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.901 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.944 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.921 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.91 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.899 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.925 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.907 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.073 seconds.[0m
+notifying browser that file changed:  resources/public/js/goog/deps.js
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.007 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
