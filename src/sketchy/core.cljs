@@ -67,17 +67,20 @@
    [:button  {:class "btn btn default" :on-click #(rf/dispatch [:remove-idea i])} 
     "Delete"]])
 
-(defn ui [db]
-  [:div#ideas-list
-   [:h3 "All of your ideas"]
-   [new-idea]
-   [:ul
-    (for [i @db]
-      [show-idea i])]])
+(defn show-all-ideas []
+  (let [db (rf/subscribe [:ideas])]
+    [:ul
+      (into [:div#ideas-list] (for [i @db] [show-idea i]))]))
+
+(defn ui []
+  [:div#ui
+      [new-idea]
+      [:h3 "All your ideas"]
+      [show-all-ideas]]) 
 ;
 ;; -- End of views
 ;
 (defn ^:export start []
   (rf/dispatch-sync [:initialise])
-  (r/render [ui (rf/subscribe [:ideas])] (.getElementById js/document "root")))
+  (r/render [ui] (.getElementById js/document "root")))
 
