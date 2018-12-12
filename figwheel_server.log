@@ -169,3 +169,283 @@ notifying browser that file changed:  resources/public/js/sketchy/core.js
 Compiling build :client to "resources/public/js/client.js" from ["src"]...
 [32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.007 seconds.[0m
 notifying browser that file changed:  resources/public/js/sketchy/core.js
+[36m----  Couldn't load Clojure file  src/sketchy/components/add_idea.clj   line:4  column:13  ----[0m
+
+  [1mNo such namespace: r[0m
+
+  [36m3[0m  [36m(defn new-idea [][0m
+  [33m4[0m  [1m  (let [val (r/atom "")][0m
+  [0m [0m  [33m            ^--- No such namespace: r[0m
+  [36m5[0m  [36m    (fn [][0m
+  [36m6[0m  [36m      [:div#new-idea[0m
+  [36m7[0m  [36m       [:input {:type "text"[0m
+
+[36m----  Exception Stack Trace  ----[0m
+
+java.lang.RuntimeException: No such namespace: r
+ at clojure.lang.Util.runtimeException (Util.java:221)
+    clojure.lang.Compiler.resolveIn (Compiler.java:7269)
+    clojure.lang.Compiler.resolve (Compiler.java:7243)
+    clojure.lang.Compiler.analyzeSymbol (Compiler.java:7204)
+    clojure.lang.Compiler.analyze (Compiler.java:6752)
+    clojure.lang.Compiler.analyze (Compiler.java:6729)
+    clojure.lang.Compiler$InvokeExpr.parse (Compiler.java:3813)
+    clojure.lang.Compiler.analyzeSeq (Compiler.java:7005)
+    clojure.lang.Compiler.analyze (Compiler.java:6773)
+    clojure.lang.Compiler.access$300 (Compiler.java:38)
+    clojure.lang.Compiler$LetExpr$Parser.parse (Compiler.java:6368)
+    clojure.lang.Compiler.analyzeSeq (Compiler.java:7003)
+    clojure.lang.Compiler.analyze (Compiler.java:6773)
+    clojure.lang.Compiler.analyzeSeq (Compiler.java:6991)
+    clojure.lang.Compiler.analyze (Compiler.java:6773)
+    clojure.lang.Compiler.analyze (Compiler.java:6729)
+    clojure.lang.Compiler$BodyExpr$Parser.parse (Compiler.java:6100)
+    clojure.lang.Compiler$FnMethod.parse (Compiler.java:5460)
+    clojure.lang.Compiler$FnExpr.parse (Compiler.java:4022)
+    clojure.lang.Compiler.analyzeSeq (Compiler.java:7001)
+    clojure.lang.Compiler.analyze (Compiler.java:6773)
+    clojure.lang.Compiler.analyzeSeq (Compiler.java:6991)
+    clojure.lang.Compiler.analyze (Compiler.java:6773)
+    clojure.lang.Compiler.access$300 (Compiler.java:38)
+    clojure.lang.Compiler$DefExpr$Parser.parse (Compiler.java:595)
+    clojure.lang.Compiler.analyzeSeq (Compiler.java:7003)
+    clojure.lang.Compiler.analyze (Compiler.java:6773)
+    clojure.lang.Compiler.analyze (Compiler.java:6729)
+    clojure.lang.Compiler.eval (Compiler.java:7066)
+    clojure.lang.Compiler.load (Compiler.java:7514)
+    clojure.lang.Compiler.loadFile (Compiler.java:7452)
+    clojure.lang.RT$3.invoke (RT.java:325)
+    figwheel_sidecar.build_middleware.clj_reloading$handle_clj_source_reloading.invokeStatic (clj_reloading.clj:61)
+    figwheel_sidecar.build_middleware.clj_reloading$handle_clj_source_reloading.invoke (clj_reloading.clj:46)
+    figwheel_sidecar.build_middleware.clj_reloading$hook$fn__21225.invoke (clj_reloading.clj:93)
+    figwheel_sidecar.build_middleware.javascript_reloading$hook$fn__21258.invoke (javascript_reloading.clj:48)
+    figwheel_sidecar.components.cljs_autobuild$color_output$fn__21313.invoke (cljs_autobuild.clj:80)
+    figwheel_sidecar.components.cljs_autobuild$execute_build$fn__21355.invoke (cljs_autobuild.clj:234)
+    figwheel_sidecar.utils$sync_exec$fn__371$fn__372.invoke (utils.clj:13)
+    figwheel_sidecar.utils$sync_exec$fn__371.invoke (utils.clj:12)
+    clojure.core$binding_conveyor_fn$fn__5476.invoke (core.clj:2025)
+    clojure.lang.AFn.applyToHelper (AFn.java:154)
+    clojure.lang.RestFn.applyTo (RestFn.java:132)
+    clojure.lang.Agent$Action.doRun (Agent.java:114)
+    clojure.lang.Agent$Action.run (Agent.java:163)
+    java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1128)
+    java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:628)
+    java.lang.Thread.run (Thread.java:834)
+
+[36m----  Couldn't load Clojure file  src/sketchy/components/show_ideas.clj   line:1  column:1  ----[0m
+
+  [1mCall to clojure.core/ns did not conform to spec:
+In: [1] val: ((:require [re-frame.core :as rf] [])) fails spec: :clojure.core.specs.alpha/ns-form at: [:args] predicate: (cat :docstring (? string?) :attr-map (? map?) :clauses :clojure.core.specs.alpha/ns-clauses),  Extra input
+[0m
+
+  [33m1[0m  [1m(ns components.show-ideas[0m
+  [0m [0m  [33m^--- Call to clojure.core/ns did not conform to spec:
+In: [1] val: ((:require [re-frame.core :as rf] [])) fails spec: :clojure.core.specs.alpha/ns-form at: [:args] predicate: (cat :docstring (? string?) :attr-map (? map?) :clauses :clojure.core.specs.alpha/ns-clauses),  Extra input
+[0m
+  [36m2[0m  [36m  (:require [re-frame.core :as rf][0m
+  [36m3[0m  [36m            []))[0m
+
+[36m----  Exception Stack Trace  ----[0m
+
+clojure.lang.ExceptionInfo: Call to clojure.core/ns did not conform to spec:
+In: [1] val: ((:require [re-frame.core :as rf] [])) fails spec: :clojure.core.specs.alpha/ns-form at: [:args] predicate: (cat :docstring (? string?) :attr-map (? map?) :clauses :clojure.core.specs.alpha/ns-clauses),  Extra input
+
+ at clojure.core$ex_info.invokeStatic (core.clj:4739)
+    clojure.core$ex_info.invoke (core.clj:4739)
+    clojure.spec.alpha$macroexpand_check.invokeStatic (alpha.clj:689)
+    clojure.spec.alpha$macroexpand_check.invoke (alpha.clj:681)
+    clojure.lang.AFn.applyToHelper (AFn.java:156)
+    clojure.lang.AFn.applyTo (AFn.java:144)
+    clojure.lang.Var.applyTo (Var.java:702)
+    clojure.lang.Compiler.checkSpecs (Compiler.java:6889)
+    clojure.lang.Compiler.macroexpand1 (Compiler.java:6907)
+    clojure.lang.Compiler.macroexpand (Compiler.java:6972)
+    clojure.lang.Compiler.eval (Compiler.java:7046)
+    clojure.lang.Compiler.load (Compiler.java:7514)
+    clojure.lang.Compiler.loadFile (Compiler.java:7452)
+    clojure.lang.RT$3.invoke (RT.java:325)
+    figwheel_sidecar.build_middleware.clj_reloading$handle_clj_source_reloading.invokeStatic (clj_reloading.clj:61)
+    figwheel_sidecar.build_middleware.clj_reloading$handle_clj_source_reloading.invoke (clj_reloading.clj:46)
+    figwheel_sidecar.build_middleware.clj_reloading$hook$fn__21225.invoke (clj_reloading.clj:93)
+    figwheel_sidecar.build_middleware.javascript_reloading$hook$fn__21258.invoke (javascript_reloading.clj:48)
+    figwheel_sidecar.components.cljs_autobuild$color_output$fn__21313.invoke (cljs_autobuild.clj:80)
+    figwheel_sidecar.components.cljs_autobuild$execute_build$fn__21355.invoke (cljs_autobuild.clj:234)
+    figwheel_sidecar.utils$sync_exec$fn__371$fn__372.invoke (utils.clj:13)
+    figwheel_sidecar.utils$sync_exec$fn__371.invoke (utils.clj:12)
+    clojure.core$binding_conveyor_fn$fn__5476.invoke (core.clj:2025)
+    clojure.lang.AFn.applyToHelper (AFn.java:154)
+    clojure.lang.RestFn.applyTo (RestFn.java:132)
+    clojure.lang.Agent$Action.doRun (Agent.java:114)
+    clojure.lang.Agent$Action.run (Agent.java:163)
+    java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1128)
+    java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:628)
+    java.lang.Thread.run (Thread.java:834)
+
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[36m----  Compiler Warning on   src/sketchy/components/add_idea.cljs   line:4  column:14  ----[0m
+
+  [1mNo such namespace: r, could not locate r.cljs, r.cljc, or JavaScript source providing "r"[0m
+
+  [36m1[0m  [36m(ns components.add-idea)[0m
+  [36m2[0m  [36m[0m
+  [36m3[0m  [36m(defn new-idea [][0m
+  [33m4[0m  [1m  (let [val (r/atom "")][0m
+  [0m [0m  [33m             ^--- No such namespace: r, could not locate r.cljs, r.cljc, or JavaScript source providing "r"[0m
+  [36m5[0m  [36m    (fn [][0m
+  [36m6[0m  [36m      [:div#new-idea[0m
+  [36m7[0m  [36m       [:input {:type "text"[0m
+  [36m8[0m  [36m                :placeholder "Enter some ideas you have"[0m
+  [36m9[0m  [36m                :value @val[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/components/add_idea.cljs  ----[0m
+[36m----  Compiler Warning on   src/sketchy/components/add_idea.cljs   line:4  column:14  ----[0m
+
+  [1mUse of undeclared Var r/atom[0m
+
+  [36m1[0m  [36m(ns components.add-idea)[0m
+  [36m2[0m  [36m[0m
+  [36m3[0m  [36m(defn new-idea [][0m
+  [33m4[0m  [1m  (let [val (r/atom "")][0m
+  [0m [0m  [33m             ^--- Use of undeclared Var r/atom[0m
+  [36m5[0m  [36m    (fn [][0m
+  [36m6[0m  [36m      [:div#new-idea[0m
+  [36m7[0m  [36m       [:input {:type "text"[0m
+  [36m8[0m  [36m                :placeholder "Enter some ideas you have"[0m
+  [36m9[0m  [36m                :value @val[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/components/add_idea.cljs  ----[0m
+[36m----  Compiler Warning on   src/sketchy/components/add_idea.cljs   line:12  column:30  ----[0m
+
+  [1mNo such namespace: rf, could not locate rf.cljs, rf.cljc, or JavaScript source providing "rf"[0m
+
+  [36m 8[0m  [36m         :placeholder "Enter some ideas you have"[0m
+  [36m 9[0m  [36m         :value @val[0m
+  [36m10[0m  [36m         :on-change #(reset! val (-> % .-target .-value))}][0m
+  [36m11[0m  [36m[:button {:class "btn btn-default" [0m
+  [33m12[0m  [1m          :on-click #(rf/dispatch [:add-idea @val])}[0m
+  [0m  [0m  [33m                      ^--- No such namespace: rf, could not locate rf.cljs, rf.cljc, or JavaScript source providing "rf"[0m
+  [36m13[0m  [36m "Add"]])))[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/components/add_idea.cljs  ----[0m
+[36m----  Compiler Warning on   src/sketchy/components/add_idea.cljs   line:12  column:30  ----[0m
+
+  [1mUse of undeclared Var rf/dispatch[0m
+
+  [36m 8[0m  [36m         :placeholder "Enter some ideas you have"[0m
+  [36m 9[0m  [36m         :value @val[0m
+  [36m10[0m  [36m         :on-change #(reset! val (-> % .-target .-value))}][0m
+  [36m11[0m  [36m[:button {:class "btn btn-default" [0m
+  [33m12[0m  [1m          :on-click #(rf/dispatch [:add-idea @val])}[0m
+  [0m  [0m  [33m                      ^--- Use of undeclared Var rf/dispatch[0m
+  [36m13[0m  [36m "Add"]])))[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/components/add_idea.cljs  ----[0m
+[31mFailed to compile build :client from ["src"] in 0.749 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/core.cljs  ----[0m
+
+  [1mNo such namespace: components.show-ideas, could not locate components/show_ideas.cljs, components/show_ideas.cljc, or JavaScript source providing "components.show-ideas" (Please check that namespaces with dashes use underscores in the ClojureScript file name) [0m
+
+[36m----  Analysis Error : Please see src/sketchy/core.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[31mFailed to compile build :client from ["src"] in 0.356 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/components/show_ideas.cljs   line:1  column:1  ----[0m
+
+  [1mLibrary name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+
+  [33m1[0m  [1m(ns components.show-ideas[0m
+  [0m [0m  [33m^--- Library name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+  [36m2[0m  [36m  (:require [re-frame.core :as rf][0m
+  [36m3[0m  [36m            []))[0m
+
+[36m----  Analysis Error : Please see src/sketchy/components/show_ideas.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[31mFailed to compile build :client from ["src"] in 0.319 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/components/show_ideas.cljs   line:1  column:1  ----[0m
+
+  [1mLibrary name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+
+  [33m1[0m  [1m(ns components.show-ideas[0m
+  [0m [0m  [33m^--- Library name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+  [36m2[0m  [36m  (:require [re-frame.core :as rf][0m
+  [36m3[0m  [36m            []))[0m
+
+[36m----  Analysis Error : Please see src/sketchy/components/show_ideas.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[31mFailed to compile build :client from ["src"] in 0.348 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/components/show_ideas.cljs   line:1  column:1  ----[0m
+
+  [1mLibrary name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+
+  [33m1[0m  [1m(ns sketchy.components.show-ideas[0m
+  [0m [0m  [33m^--- Library name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+  [36m2[0m  [36m  (:require [re-frame.core :as rf][0m
+  [36m3[0m  [36m            []))[0m
+
+[36m----  Analysis Error : Please see src/sketchy/components/show_ideas.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[31mFailed to compile build :client from ["src"] in 0.336 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/components/show_ideas.cljs   line:1  column:1  ----[0m
+
+  [1mLibrary name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+
+  [33m1[0m  [1m(ns sketchy.components.show-ideas[0m
+  [0m [0m  [33m^--- Library name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+  [36m2[0m  [36m  (:require [re-frame.core :as rf][0m
+  [36m3[0m  [36m            []))[0m
+
+[36m----  Analysis Error : Please see src/sketchy/components/show_ideas.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[31mFailed to compile build :client from ["src"] in 0.34 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/components/show_ideas.cljs   line:1  column:1  ----[0m
+
+  [1mLibrary name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+
+  [33m1[0m  [1m(ns sketchy.components.show-ideas[0m
+  [0m [0m  [33m^--- Library name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+  [36m2[0m  [36m  (:require [re-frame.core :as rf][0m
+  [36m3[0m  [36m            []))[0m
+
+[36m----  Analysis Error : Please see src/sketchy/components/show_ideas.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[31mFailed to compile build :client from ["src"] in 0.339 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/components/show_ideas.cljs   line:1  column:1  ----[0m
+
+  [1mLibrary name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+
+  [33m1[0m  [1m(ns sketchy.components.show-ideas[0m
+  [0m [0m  [33m^--- Library name must be specified as a symbol in :require / :require-macros; offending spec: [] at line 1 src/sketchy/components/show_ideas.cljs[0m
+  [36m2[0m  [36m  (:require [re-frame.core :as rf][0m
+  [36m3[0m  [36m            []))[0m
+
+[36m----  Analysis Error : Please see src/sketchy/components/show_ideas.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[31mFailed to compile build :client from ["src"] in 0.37 seconds.[0m
+[36m----  Could not Analyze  src/sketchy/components/add_idea.cljs   line:1  column:1  ----[0m
+
+  [1mOnly :refer-clojure, :require, :require-macros, :use, :use-macros, and :import libspecs supported. Got (require [reagent.core :as r] [re-frame.core :as rf]) instead. at line 1 src/sketchy/components/add_idea.cljs[0m
+
+  [33m1[0m  [1m(ns sketchy.components.add-idea[0m
+  [0m [0m  [33m^--- Only :refer-clojure, :require, :require-macros, :use, :use-macros, and :import libspecs supported. Got (require [reagent.core :as r] [re-frame.core :as rf]) instead. at line 1 src/sketchy/components/add_idea.cljs[0m
+  [36m2[0m  [36m  (require [reagent.core :as r][0m
+  [36m3[0m  [36m           [re-frame.core :as rf]))[0m
+
+[36m----  Analysis Error : Please see src/sketchy/components/add_idea.cljs  ----[0m
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.003 seconds.[0m
+notifying browser that file changed:  resources/public/js/goog/deps.js
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/components/add_idea.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.025 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/components/add_idea.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.946 seconds.[0m
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.935 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/core.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.936 seconds.[0m
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/components/show_ideas.js

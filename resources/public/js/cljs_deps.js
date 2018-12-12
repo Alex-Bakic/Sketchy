@@ -56,4 +56,8 @@ goog.addDependency("../clojure/data.js", ['clojure.data'], ['cljs.core', 'clojur
 goog.addDependency("../re_frame/std_interceptors.js", ['re_frame.std_interceptors'], ['re_frame.interceptor', 're_frame.trace', 're_frame.registrar', 'cljs.core', 're_frame.utils', 're_frame.loggers', 're_frame.cofx', 'clojure.data', 're_frame.db']);
 goog.addDependency("../re_frame/subs.js", ['re_frame.subs'], ['re_frame.interop', 're_frame.trace', 're_frame.registrar', 'cljs.core', 're_frame.utils', 're_frame.loggers', 're_frame.db']);
 goog.addDependency("../re_frame/core.js", ['re_frame.core'], ['re_frame.interop', 're_frame.interceptor', 're_frame.events', 're_frame.fx', 're_frame.registrar', 'cljs.core', 're_frame.router', 'clojure.set', 're_frame.std_interceptors', 're_frame.loggers', 're_frame.subs', 're_frame.cofx', 're_frame.db']);
-goog.addDependency("../sketchy/core.js", ['sketchy.core'], ['reagent.core', 'cljs.core', 're_frame.core']);
+goog.addDependency("../sketchy/events.js", ['sketchy.events'], ['cljs.core', 're_frame.core']);
+goog.addDependency("../sketchy/components/show_ideas.js", ['sketchy.components.show_ideas'], ['cljs.core', 're_frame.core']);
+goog.addDependency("../sketchy/subs.js", ['sketchy.subs'], ['cljs.core', 're_frame.core']);
+goog.addDependency("../sketchy/components/add_idea.js", ['sketchy.components.add_idea'], ['reagent.core', 'cljs.core', 're_frame.core']);
+goog.addDependency("../sketchy/core.js", ['sketchy.core'], ['sketchy.events', 'reagent.core', 'cljs.core', 'sketchy.components.show_ideas', 'sketchy.subs', 'sketchy.components.add_idea', 're_frame.core']);

@@ -727,4 +727,4 @@ re_frame.router._call_post_event_callbacks.call(null,re_frame.router.event_queue
 return null;
 });
 
-//# sourceMappingURL=router.js.map?rel=1544535916379
+//# sourceMappingURL=router.js.map?rel=1544650580321
