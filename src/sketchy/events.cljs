@@ -1,24 +1,43 @@
 (ns sketchy.events 
-  (:require [re-frame.core :as rf]))
+  (:require [reagent.core :as r]
+            [re-frame.core :as rf]))
 
-;; app state
-(rf/reg-event-db
-  :initialise
-  (fn [_ _]
-    {:ideas []}))
+;;
+;; ADDING AN IDEA
+;; 
 
-;; need a handler to specify adding the idea
+;;add some text in case the user does not add anything to the db
+(defn any-idea? [i]
+  (if (= "" i) [:span "You can think of" [:b " something"] "!"] i))
+
+;; add idea with no comments and no rating initially
 (rf/reg-event-db
   :add-idea
   (fn [db [_ idea]]
-    (update-in db [:ideas] conj idea)))
+    (swap! db conj {:idea (any-idea? idea) :comments [] :keywords []})))
 
-;; need a handler to remove an idea from the vector too
+;;
+;; REMOVING AN IDEA
+;;
+
+;; need a handler to remove an idea from the vector
 (defn remove-idea
   [is i]
-  (filterv (complement #(= % i)) is))
+  (filterv (complement #(= i (:idea %))) is))
 
 (rf/reg-event-db
   :remove-idea
   (fn [db [_ idea]]
-    (update-in db [:ideas] remove-idea idea)))
+    (swap! db remove-idea idea)))
+
+;;
+;; ADDING A COMMENT
+;; 
+
+;; as the button to add a comment will be with the component that 
+;; renders a given idea, it can pass it along to this fn to add the
+;; comment to the corresponding map
+
+(defn inserting-comment
+  [m c]
+  (assoc m :comments (conj (:comments m) c)))
