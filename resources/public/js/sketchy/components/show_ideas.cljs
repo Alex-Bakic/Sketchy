@@ -8,6 +8,6 @@
     "Delete"]])
 
 (defn show-all-ideas []
-  (let [db (rf/subscribe [:ideas])]
-    [:ul
-      (into [:div#ideas-list] (for [i @db] [show-idea i]))]))
+ (let [db (rf/subscribe [:ideas])] 
+   [:ul (into [:div#ideas-list] 
+              (for [i @db] (show-idea i)))]))

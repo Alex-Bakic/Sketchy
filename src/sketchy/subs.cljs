@@ -8,5 +8,5 @@
 (rf/reg-sub
   :ideas
   (fn [db _]
-    (mapv :idea @db)))
+    (mapv :idea db)))
 

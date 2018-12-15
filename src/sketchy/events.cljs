@@ -1,7 +1,30 @@
 (ns sketchy.events 
-  (:require [reagent.core :as r]
+  (:require [sketchy.db :as d]
+            [reagent.core :as r]
             [re-frame.core :as rf]))
 
+;;
+;; APP STATE
+;;
+
+;; each entry in the vector will be a map of the form:
+;; {:idea "something..." :comments [] :keywords []}
+(rf/reg-event-fx
+  :initialise
+
+  ;; injecting the local-storage , put into the :cofx arg
+  [(rf/inject-cofx :local-store-ideas)]
+  
+  (fn [{:keys [db local-store-ideas]} _]
+    {:db local-store-ideas}))
+
+;;
+;; INTERCEPTORS
+;;
+
+(def ->local-storage (rf/after d/ideas->storage))
+
+(def ->trash (rf/after d/storage->trash))
 ;;
 ;; ADDING AN IDEA
 ;; 
@@ -13,8 +36,9 @@
 ;; add idea with no comments and no rating initially
 (rf/reg-event-db
   :add-idea
+  [->local-storage]
   (fn [db [_ idea]]
-    (swap! db conj {:idea (any-idea? idea) :comments [] :keywords []})))
+    (conj db {:idea (any-idea? idea) :comments [] :keywords []})))
 
 ;;
 ;; REMOVING AN IDEA
@@ -27,8 +51,9 @@
 
 (rf/reg-event-db
   :remove-idea
+  [->trash]
   (fn [db [_ idea]]
-    (swap! db remove-idea idea)))
+    (remove-idea db idea)))
 
 ;;
 ;; ADDING A COMMENT

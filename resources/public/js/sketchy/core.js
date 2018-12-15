@@ -5,6 +5,7 @@ goog.require('reagent.core');
 goog.require('re_frame.core');
 goog.require('sketchy.components.add_idea');
 goog.require('sketchy.components.show_ideas');
+goog.require('sketchy.db');
 goog.require('sketchy.events');
 goog.require('sketchy.subs');
 sketchy.core.ui = (function sketchy$core$ui(){
@@ -17,4 +18,4 @@ return reagent.core.render.call(null,new cljs.core.PersistentVector(null, 1, 5, 
 });
 goog.exportSymbol('sketchy.core.start', sketchy.core.start);
 
-//# sourceMappingURL=core.js.map?rel=1544651429523
+//# sourceMappingURL=core.js.map?rel=1544896703255
