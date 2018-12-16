@@ -912,3 +912,115 @@ notifying browser that file changed:  resources/public/js/sketchy/events.js
 Compiling build :client to "resources/public/js/client.js" from ["src"]...
 [32mSuccessfully compiled build :client to "resources/public/js/client.js" in 0.963 seconds.[0m
 notifying browser that file changed:  resources/public/js/sketchy/events.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.184 seconds.[0m
+notifying browser that file changed:  resources/public/js/goog/deps.js
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.035 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.034 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.054 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[36m----  Compiler Warning on   src/sketchy/db.cljs   line:13  column:2  ----[0m
+
+  [1mNo such namespace: re-frame, could not locate re_frame.cljs, re_frame.cljc, or JavaScript source providing "re-frame" (Please check that namespaces with dashes use underscores in the ClojureScript file name)[0m
+
+  [36m 9[0m  [36m  [ideas][0m
+  [36m10[0m  [36m  (.setItem js/localStorage ls-key (str ideas))) [0m
+  [36m11[0m  [36m  ;; written as an EDN map[0m
+  [36m12[0m  [36m[0m
+  [33m13[0m  [1m(re-frame/reg-cofx[0m
+  [0m  [0m  [33m ^--- No such namespace: re-frame, could not locate re_frame.cljs, re_frame.cljc, or JavaScript source providing "re-frame" (Please check that namespaces with dashes use underscores in the ClojureScript file name)[0m
+  [36m14[0m  [36m  :local-store-ideas[0m
+  [36m15[0m  [36m  (fn [cofx _][0m
+  [36m16[0m  [36m      ;; put the localstore todos into the coeffect [0m
+  [36m17[0m  [36m      ;; under :local-store-todos[0m
+  [36m18[0m  [36m      (assoc cofx :local-store-ideas[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/db.cljs  ----[0m
+[36m----  Compiler Warning on   src/sketchy/db.cljs   line:13  column:2  ----[0m
+
+  [1mUse of undeclared Var re-frame/reg-cofx[0m
+
+  [36m 9[0m  [36m  [ideas][0m
+  [36m10[0m  [36m  (.setItem js/localStorage ls-key (str ideas))) [0m
+  [36m11[0m  [36m  ;; written as an EDN map[0m
+  [36m12[0m  [36m[0m
+  [33m13[0m  [1m(re-frame/reg-cofx[0m
+  [0m  [0m  [33m ^--- Use of undeclared Var re-frame/reg-cofx[0m
+  [36m14[0m  [36m  :local-store-ideas[0m
+  [36m15[0m  [36m  (fn [cofx _][0m
+  [36m16[0m  [36m      ;; put the localstore todos into the coeffect [0m
+  [36m17[0m  [36m      ;; under :local-store-todos[0m
+  [36m18[0m  [36m      (assoc cofx :local-store-ideas[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/db.cljs  ----[0m
+[36m----  Compiler Warning on   src/sketchy/db.cljs   line:23  column:30  ----[0m
+
+  [1mUse of undeclared Var cljs.reader/read-string[0m
+
+  [36m19[0m  [36m             ;; read in todos from localstore[0m
+  [36m20[0m  [36m             ;; and process into a sorted map[0m
+  [36m21[0m  [36m             (into [][0m
+  [36m22[0m  [36m                   (some->> (.getItem js/localStorage ls-key)[0m
+  [33m23[0m  [1m                            (cljs.reader/read-string)    [0m
+  [0m  [0m  [33m                             ^--- Use of undeclared Var cljs.reader/read-string[0m
+  [36m24[0m  [36m                            ;; EDN map -> map[0m
+  [36m25[0m  [36m)))))[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/db.cljs  ----[0m
+[36m----  Compiler Warning on   src/sketchy/events.cljs   line:27  column:24  ----[0m
+
+  [1mUse of undeclared Var sketchy.db/storage->trash[0m
+
+  [36m23[0m  [36m;;[0m
+  [36m24[0m  [36m[0m
+  [36m25[0m  [36m(def ->local-storage (rf/after d/ideas->storage))[0m
+  [36m26[0m  [36m[0m
+  [33m27[0m  [1m(def ->trash (rf/after d/storage->trash))[0m
+  [0m  [0m  [33m                       ^--- Use of undeclared Var sketchy.db/storage->trash[0m
+  [36m28[0m  [36m;;[0m
+  [36m29[0m  [36m;; ADDING AN IDEA[0m
+  [36m30[0m  [36m;; [0m
+  [36m31[0m  [36m[0m
+  [36m32[0m  [36m;;add some text in case the user does not add anything to the db[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/events.cljs  ----[0m
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.114 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.032 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/events.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[36m----  Compiler Warning on   src/sketchy/db.cljs   line:23  column:30  ----[0m
+
+  [1mUse of undeclared Var cljs.reader/read-string[0m
+
+  [36m19[0m  [36m             ;; read in todos from localstore[0m
+  [36m20[0m  [36m             ;; and process into a sorted map[0m
+  [36m21[0m  [36m             (into [][0m
+  [36m22[0m  [36m                   (some->> (.getItem js/localStorage ls-key)[0m
+  [33m23[0m  [1m                            (cljs.reader/read-string)    [0m
+  [0m  [0m  [33m                             ^--- Use of undeclared Var cljs.reader/read-string[0m
+  [36m24[0m  [36m                            ;; EDN map -> map[0m
+  [36m25[0m  [36m)))))[0m
+
+[36m----  Compiler Warning : Please see src/sketchy/db.cljs  ----[0m
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.101 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.186 seconds.[0m
+notifying browser that file changed:  resources/public/js/cljs_deps.js
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.023 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/db.js
+Compiling build :client to "resources/public/js/client.js" from ["src"]...
+[32mSuccessfully compiled build :client to "resources/public/js/client.js" in 1.004 seconds.[0m
+notifying browser that file changed:  resources/public/js/sketchy/db.js

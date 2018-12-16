@@ -22,9 +22,8 @@
 ;; INTERCEPTORS
 ;;
 
-(def ->local-storage (rf/after d/ideas->storage))
+(def ->storage (rf/after d/ideas->storage))
 
-(def ->trash (rf/after d/storage->trash))
 ;;
 ;; ADDING AN IDEA
 ;; 
@@ -36,7 +35,7 @@
 ;; add idea with no comments and no rating initially
 (rf/reg-event-db
   :add-idea
-  [->local-storage]
+  [->storage]
   (fn [db [_ idea]]
     (conj db {:idea (any-idea? idea) :comments [] :keywords []})))
 
@@ -51,7 +50,7 @@
 
 (rf/reg-event-db
   :remove-idea
-  [->trash]
+  [->storage]
   (fn [db [_ idea]]
     (remove-idea db idea)))
 

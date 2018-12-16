@@ -1,34 +1,24 @@
 (ns sketchy.db 
-  (:require [re-frame.core :as rf]
+  (:require [cljs.reader]
+            [re-frame.core :as rf]
             [alandipert.storage-atom :refer [local-storage]]))
 
 
-;; local-storage
-(def db (local-storage (atom []) :db))
+(def ls-key "db")                  ;; localstore key
 
-
-;; Adding the functionality to take the ideas from each event
-;; handler and push them into local-storage after it's run.
 (defn ideas->storage
   [ideas]
-  (swap! db conj ideas))
+  (.setItem js/localStorage ls-key (str ideas))) 
+  ;; written as an EDN map
 
-(defn remove-idea
-  [is i]
-  (filterv (complement #(= i (:idea %))) is))
-
-(defn storage->trash
-  [idea]
-  (swap! db remove-idea idea))
-;; Adding the functionality to take things from local-storage 
-;; into  our in-memory db and vice versa using interceptors
-
-;; Take what was in local-storage and add it into the cofx map
 (rf/reg-cofx
   :local-store-ideas
   (fn [cofx _]
-    ;; put all the ideas into the cofx map under the key
-    ;; :local-store-ideas
-    (assoc cofx :local-store-ideas @db)))
-
-
+      ;; put the localstore todos into the coeffect 
+      ;; under :local-store-todos
+      (assoc cofx :local-store-ideas
+             ;; read in todos from localstore
+             ;; and process into a sorted map
+             (into []
+                   (some->> (.getItem js/localStorage ls-key)
+                            (cljs.reader/read-string))))))
