@@ -3,8 +3,8 @@
             [re-frame.core :as rf]
             [alandipert.storage-atom :refer [local-storage]]))
 
-
-(def ls-key "db")                  ;; localstore key
+(def ls-key "db")                 
+;; localstore key
 
 (defn ideas->storage
   [ideas]
