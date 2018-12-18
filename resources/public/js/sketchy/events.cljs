@@ -8,7 +8,7 @@
 ;;
 
 ;; each entry in the vector will be a map of the form:
-;; {:idea "something..." :comments [] :rating 0}
+;; {:idea "something..." :comments [] :keywords []}
 (rf/reg-event-fx
   :initialise
 
@@ -22,13 +22,16 @@
 ;; INTERCEPTORS
 ;;
 
-(def ->local-storage (rf/after d/ideas->storage))
+;; will update the storage with every event handler operation
+;; update includes showing the insertion/deletion of items in the db
+(def ->storage (rf/after d/ideas->storage))
 
-(def ->trash (rf/after d/storage->trash))
 ;;
-;; ADDING AN IDEA
+;; EVENT HANDLERS
 ;; 
 
+;; ADDING AN IDEA
+ 
 ;;add some text in case the user does not add anything to the db
 (defn any-idea? [i]
   (if (= "" i) [:span "You can think of" [:b " something"] "!"] i))
@@ -36,13 +39,11 @@
 ;; add idea with no comments and no rating initially
 (rf/reg-event-db
   :add-idea
-  [->local-storage]
+  [->storage]
   (fn [db [_ idea]]
     (conj db {:idea (any-idea? idea) :comments [] :keywords []})))
 
-;;
 ;; REMOVING AN IDEA
-;;
 
 ;; need a handler to remove an idea from the vector
 (defn remove-idea
@@ -51,7 +52,7 @@
 
 (rf/reg-event-db
   :remove-idea
-  [->trash]
+  [->storage]
   (fn [db [_ idea]]
     (remove-idea db idea)))
 
@@ -59,10 +60,14 @@
 ;; ADDING A COMMENT
 ;; 
 
-;; as the button to add a comment will be with the component that 
-;; renders a given idea, it can pass it along to this fn to add the
-;; comment to the corresponding map
 
+;; 
 (defn inserting-comment
   [m c]
   (assoc m :comments (conj (:comments m) c)))
+
+(rf/reg-event-db
+  :add-comment
+  [->storage]
+  (fn [db [_ idea comment]]
+    ))

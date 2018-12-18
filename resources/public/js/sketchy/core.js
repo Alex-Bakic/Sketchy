@@ -18,4 +18,4 @@ return reagent.core.render.call(null,new cljs.core.PersistentVector(null, 1, 5, 
 });
 goog.exportSymbol('sketchy.core.start', sketchy.core.start);
 
-//# sourceMappingURL=core.js.map?rel=1544896703255
+//# sourceMappingURL=core.js.map?rel=1545151556760

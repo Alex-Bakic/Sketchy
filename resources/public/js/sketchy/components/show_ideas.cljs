@@ -4,7 +4,7 @@
 (defn show-idea [i]
   [:p
    [:span i]
-   [:button  {:class "btn btn default" :on-click #(rf/dispatch [:remove-idea i])} 
+   [:button  {:class "btn btn-default" :on-click #(rf/dispatch [:remove-idea i])} 
     "Delete"]])
 
 (defn show-all-ideas []
