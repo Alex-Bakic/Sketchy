@@ -82,9 +82,17 @@
     (update-ideas db idea :comments conj comment)))
 
 ;;
-;; REMOVE COMMENT
+;; REMOVE A COMMENT
 ;;
 
+(defn remove-comment [db comment]
+  (vec (remove #(= % comment) db)))
+
+(rf/reg-event-db
+  :remove-comment
+   [->storage]
+   (fn [db [_ idea comment]]
+      (update-ideas db idea :comments remove-comment comment)))
 
 ;;
 ;; ADDING A KEYWORD
@@ -98,4 +106,16 @@
   (fn [db [_ idea kw]]
     (update-ideas db idea :keywords conj kw)))
 
+;;
+;; REMOVING A KEYWORD
+;;
+
+(defn remove-keyword [db kw]
+  (vec (remove #(= % kw) db)))
+
+(rf/reg-event-db
+  :remove-keyword
+   [->storage]
+   (fn [db [_ idea kw]]
+     (update-ideas db idea :keywords remove-keyword kw)))
 

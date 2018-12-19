@@ -12,4 +12,4 @@
                 :on-change #(reset! val (-> % .-target .-value))}]
        [:button {:class "btn btn-default" 
                  :on-click #(rf/dispatch [:add-idea @val])}
-        "Add"]])))
+        "+"]])))

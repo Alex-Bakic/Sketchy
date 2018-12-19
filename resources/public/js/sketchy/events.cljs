@@ -57,17 +57,65 @@
     (remove-idea db idea)))
 
 ;;
-;; ADDING A COMMENT
+;; ADDING A COMMENT OR KEYWORD , WRAPPER FNS
 ;; 
 
+;; generic fns for both comments and keywords
+(defn finding-index [db idea]
+  (.indexOf db 
+           (first (filterv #(= (:idea %) idea) db))))
 
-;; 
-(defn inserting-comment
-  [m c]
-  (assoc m :comments (conj (:comments m) c)))
+;; generic fn , otherwise violating DRY rule
+(defn update-ideas [db idea k f v]
+   (update-in db [(finding-index db idea) k] f v))
 
+;;
+;; ADD A COMMENT
+;;
+
+;; given the db , idea and comment 
+;; add to that particular vector
 (rf/reg-event-db
   :add-comment
   [->storage]
   (fn [db [_ idea comment]]
-    ))
+    (update-ideas db idea :comments conj comment)))
+
+;;
+;; REMOVE A COMMENT
+;;
+
+(defn remove-comment [db comment]
+  (vec (remove #(= % comment) db)))
+
+(rf/reg-event-db
+  :remove-comment
+   [->storage]
+   (fn [db [_ idea comment]]
+      (update-ideas db idea :comments remove-comment comment)))
+
+;;
+;; ADDING A KEYWORD
+;;
+
+;; given the db , idea and keywords 
+;; add to that particular vector
+(rf/reg-event-db
+  :add-keyword
+  [->storage]
+  (fn [db [_ idea kw]]
+    (update-ideas db idea :keywords conj kw)))
+
+;;
+;; REMOVING A KEYWORD
+;;
+
+(defn remove-keyword [db kw]
+  (vec (remove #(= % kw) db)))
+
+(rf/reg-event-db
+  :remove-keyword
+   [->storage]
+   (fn [db [_ idea kw]]
+     (update-ideas db idea :keywords remove-keyword kw)))
+

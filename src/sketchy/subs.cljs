@@ -14,11 +14,17 @@
 (rf/reg-sub
   :comments
   (fn [db [_ idea]]
-     (first (for [m db :let [i (:idea m) c (:comments m)] :when (= i idea)] c))))
+     (first (for [m db 
+                    :let [i (:idea m) c (:comments m)] 
+                    :when (= i idea)] 
+                 c))))
 
 ;; given the idea , return the keywords array
 (rf/reg-sub
   :keywords
    (fn [db [_ idea]]
-     (first (for [m db :let [i (:idea m) k (:keywords m)] :when (= i idea)] k))))
+     (first (for [m db 
+                    :let [i (:idea m) k (:keywords m)] 
+                    :when (= i idea)] 
+                 k))))
 

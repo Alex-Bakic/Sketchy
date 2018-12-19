@@ -11,7 +11,7 @@
   [:div#ui
       [ai/new-idea]
       [:h3 "All your ideas"]
-      [si/show-all-ideas]]) 
+      [si/show-all-ideas]])
 
 (defn ^:export start []
   (rf/dispatch-sync [:initialise])
