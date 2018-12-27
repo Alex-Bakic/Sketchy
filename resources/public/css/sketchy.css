@@ -12,3 +12,9 @@ body {
 	-o-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
+
+.keyword-input {
+
+    width: 5px;
+
+}

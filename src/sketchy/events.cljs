@@ -1,7 +1,9 @@
-(ns sketchy.events 
-  (:require [sketchy.db :as d]
+(ns sketchy.events
+  (:require [sketchy.db :as d] 
             [reagent.core :as r]
             [re-frame.core :as rf]))
+
+(enable-console-print!)
 
 ;;
 ;; APP STATE
@@ -14,7 +16,8 @@
 
   ;; injecting the local-storage , put into the :cofx arg
   [(rf/inject-cofx :local-store-ideas)]
-  
+  ;; must take out the db to get out the second key, could
+  ;; of done _ for the db but it is more readable
   (fn [{:keys [db local-store-ideas]} _]
     {:db local-store-ideas}))
 
@@ -28,94 +31,55 @@
 
 ;;
 ;; EVENT HANDLERS
-;; 
+;;
 
-;; ADDING AN IDEA
- 
-;;add some text in case the user does not add anything to the db
-(defn any-idea? [i]
-  (if (= "" i) [:span "You can think of" [:b " something"] "!"] i))
+;;increment the last id to add new ideas
+(defn inc-id [db]
+  (inc (last (keys db))))
 
-;; add idea with no comments and no rating initially
+;; adding an idea to the db
 (rf/reg-event-db
   :add-idea
   [->storage]
-  (fn [db [_ idea]]
-    (conj db {:idea (any-idea? idea) :comments [] :keywords []})))
+  (fn [db [_ id idea]]
+    (assoc db id {:idea idea :comments [] :keywords []})))
 
-;; REMOVING AN IDEA
+  ;; remove an idea given the id 
+  (rf/reg-event-db
+   :remove-idea
+   [->storage]
+   (fn [db [_ id]]
+     (dissoc db id)))
 
-;; need a handler to remove an idea from the vector
-(defn remove-idea
-  [is i]
-  (filterv (complement #(= i (:idea %))) is))
-
-(rf/reg-event-db
-  :remove-idea
-  [->storage]
-  (fn [db [_ idea]]
-    (remove-idea db idea)))
-
-;;
-;; ADDING A COMMENT OR KEYWORD , WRAPPER FNS
-;; 
-
-;; generic fns for both comments and keywords
-(defn finding-index [db idea]
-  (.indexOf db 
-           (first (filterv #(= (:idea %) idea) db))))
-
-;; generic fn , otherwise violating DRY rule
-(defn update-ideas [db idea k f v]
-   (update-in db [(finding-index db idea) k] f v))
-
-;;
-;; ADD A COMMENT
-;;
-
-;; given the db , idea and comment 
-;; add to that particular vector
+;; add a comment to the db given the id and the data
 (rf/reg-event-db
   :add-comment
   [->storage]
-  (fn [db [_ idea comment]]
-    (update-ideas db idea :comments conj comment)))
+  (fn [db [_ id comment]]
+    (update-in db [id :comments] conj comment)))
 
-;;
-;; REMOVE A COMMENT
-;;
+;; find the comment out of the vector and remove it
+(defn delete-item
+  [db meta-data]
+  (filterv (complement #(= % meta-data)) db))
 
-(defn remove-comment [db comment]
-  (vec (remove #(= % comment) db)))
-
+;; remove a comment from the db given the id and the data
 (rf/reg-event-db
   :remove-comment
-   [->storage]
-   (fn [db [_ idea comment]]
-      (update-ideas db idea :comments remove-comment comment)))
+  [->storage]
+  (fn [db [_ id comment]]
+     (update-in db [id :comments] delete-item comment)))
 
-;;
-;; ADDING A KEYWORD
-;;
-
-;; given the db , idea and keywords 
-;; add to that particular vector
+;; add a keyword to the db given the id and the data
 (rf/reg-event-db
   :add-keyword
   [->storage]
-  (fn [db [_ idea kw]]
-    (update-ideas db idea :keywords conj kw)))
+  (fn [db [_ id kw]]
+    (update-in db [id :keywords] conj kw)))
 
-;;
-;; REMOVING A KEYWORD
-;;
-
-(defn remove-keyword [db kw]
-  (vec (remove #(= % kw) db)))
-
+;; remove a keyword from the db given the id and the data
 (rf/reg-event-db
   :remove-keyword
-   [->storage]
-   (fn [db [_ idea kw]]
-     (update-ideas db idea :keywords remove-keyword kw)))
-
+  [->storage]
+  (fn [db [_ id kw]]
+    (update-in db [id :keywords] delete-item kw)))

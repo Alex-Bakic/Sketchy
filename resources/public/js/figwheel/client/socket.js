@@ -18,11 +18,11 @@ return goog.object.get(window,"WebSocket");
 } else {
 if(figwheel.client.utils.node_env_QMARK_.call(null)){
 try{return require("ws");
-}catch (e29993){if((e29993 instanceof Error)){
-var e = e29993;
+}catch (e30042){if((e30042 instanceof Error)){
+var e = e30042;
 return null;
 } else {
-throw e29993;
+throw e30042;
 
 }
 }} else {
@@ -80,34 +80,34 @@ return and__4036__auto____$1;
 return and__4036__auto__;
 }
 });
-figwheel.client.socket.open = (function figwheel$client$socket$open(p__29994){
-var map__29995 = p__29994;
-var map__29995__$1 = (((((!((map__29995 == null))))?(((((map__29995.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__29995.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__29995):map__29995);
-var opts = map__29995__$1;
-var retry_count = cljs.core.get.call(null,map__29995__$1,new cljs.core.Keyword(null,"retry-count","retry-count",1936122875));
-var retried_count = cljs.core.get.call(null,map__29995__$1,new cljs.core.Keyword(null,"retried-count","retried-count",-2127867357));
-var websocket_url = cljs.core.get.call(null,map__29995__$1,new cljs.core.Keyword(null,"websocket-url","websocket-url",-490444938));
-var build_id = cljs.core.get.call(null,map__29995__$1,new cljs.core.Keyword(null,"build-id","build-id",1642831089));
-var temp__5455__auto__ = figwheel.client.socket.get_websocket_imp.call(null);
-if(cljs.core.truth_(temp__5455__auto__)){
-var WebSocket = temp__5455__auto__;
+figwheel.client.socket.open = (function figwheel$client$socket$open(p__30043){
+var map__30044 = p__30043;
+var map__30044__$1 = (((((!((map__30044 == null))))?(((((map__30044.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__30044.cljs$core$ISeq$))))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__30044):map__30044);
+var opts = map__30044__$1;
+var retry_count = cljs.core.get.call(null,map__30044__$1,new cljs.core.Keyword(null,"retry-count","retry-count",1936122875));
+var retried_count = cljs.core.get.call(null,map__30044__$1,new cljs.core.Keyword(null,"retried-count","retried-count",-2127867357));
+var websocket_url = cljs.core.get.call(null,map__30044__$1,new cljs.core.Keyword(null,"websocket-url","websocket-url",-490444938));
+var build_id = cljs.core.get.call(null,map__30044__$1,new cljs.core.Keyword(null,"build-id","build-id",1642831089));
+var temp__5718__auto__ = figwheel.client.socket.get_websocket_imp.call(null);
+if(cljs.core.truth_(temp__5718__auto__)){
+var WebSocket = temp__5718__auto__;
 figwheel.client.utils.log.call(null,new cljs.core.Keyword(null,"debug","debug",-1608172596),"Figwheel: trying to open cljs reload socket");
 
 var url = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(websocket_url),cljs.core.str.cljs$core$IFn$_invoke$arity$1((cljs.core.truth_(build_id)?["/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(build_id)].join(''):""))].join('');
 var socket = (new WebSocket(url));
-socket.onmessage = ((function (url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id){
+socket.onmessage = ((function (url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id){
 return (function (msg_str){
-var temp__5457__auto__ = cljs.reader.read_string.call(null,msg_str.data);
-if(cljs.core.truth_(temp__5457__auto__)){
-var msg = temp__5457__auto__;
+var temp__5720__auto__ = cljs.reader.read_string.call(null,msg_str.data);
+if(cljs.core.truth_(temp__5720__auto__)){
+var msg = temp__5720__auto__;
 return new cljs.core.Var(function(){return figwheel.client.socket.handle_incoming_message;},new cljs.core.Symbol("figwheel.client.socket","handle-incoming-message","figwheel.client.socket/handle-incoming-message",-2084786999,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"figwheel.client.socket","figwheel.client.socket",-1038129509,null),new cljs.core.Symbol(null,"handle-incoming-message","handle-incoming-message",-1068736536,null),"resources/public/js/figwheel/client/socket.cljs",30,1,57,57,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"msg","msg",254428083,null)], null)),null,(cljs.core.truth_(figwheel.client.socket.handle_incoming_message)?figwheel.client.socket.handle_incoming_message.cljs$lang$test:null)])).call(null,msg);
 } else {
 return null;
 }
-});})(url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id))
+});})(url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id))
 ;
 
-socket.onopen = ((function (url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id){
+socket.onopen = ((function (url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id){
 return (function (x){
 cljs.core.reset_BANG_.call(null,figwheel.client.socket.socket_atom,socket);
 
@@ -117,10 +117,10 @@ window.addEventListener("beforeunload",figwheel.client.socket.close_BANG_);
 }
 
 return figwheel.client.utils.log.call(null,new cljs.core.Keyword(null,"debug","debug",-1608172596),"Figwheel: socket connection established");
-});})(url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id))
+});})(url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id))
 ;
 
-socket.onclose = ((function (url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id){
+socket.onclose = ((function (url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id){
 return (function (x){
 var retried_count__$1 = (function (){var or__4047__auto__ = retried_count;
 if(cljs.core.truth_(or__4047__auto__)){
@@ -132,10 +132,10 @@ return (0);
 figwheel.client.utils.debug_prn.call(null,"Figwheel: socket closed or failed to open");
 
 if((retry_count > retried_count__$1)){
-return setTimeout(((function (retried_count__$1,url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id){
+return setTimeout(((function (retried_count__$1,url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id){
 return (function (){
 return figwheel.client.socket.open.call(null,cljs.core.assoc.call(null,opts,new cljs.core.Keyword(null,"retried-count","retried-count",-2127867357),(retried_count__$1 + (1))));
-});})(retried_count__$1,url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id))
+});})(retried_count__$1,url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id))
 ,(function (){var x__4138__auto__ = (10000);
 var y__4139__auto__ = ((2000) + ((500) * retried_count__$1));
 return ((x__4138__auto__ < y__4139__auto__) ? x__4138__auto__ : y__4139__auto__);
@@ -143,13 +143,13 @@ return ((x__4138__auto__ < y__4139__auto__) ? x__4138__auto__ : y__4139__auto__)
 } else {
 return null;
 }
-});})(url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id))
+});})(url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id))
 ;
 
-socket.onerror = ((function (url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id){
+socket.onerror = ((function (url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id){
 return (function (x){
 return figwheel.client.utils.debug_prn.call(null,"Figwheel: socket error ");
-});})(url,socket,WebSocket,temp__5455__auto__,map__29995,map__29995__$1,opts,retry_count,retried_count,websocket_url,build_id))
+});})(url,socket,WebSocket,temp__5718__auto__,map__30044,map__30044__$1,opts,retry_count,retried_count,websocket_url,build_id))
 ;
 
 return socket;
@@ -158,4 +158,4 @@ return figwheel.client.utils.log.call(null,new cljs.core.Keyword(null,"debug","d
 }
 });
 
-//# sourceMappingURL=socket.js.map?rel=1544650593772
+//# sourceMappingURL=socket.js.map?rel=1545905849542

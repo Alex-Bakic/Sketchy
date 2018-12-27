@@ -376,9 +376,9 @@ cljs.tools.reader.reader_types.IndexingPushbackReader.prototype.cljs$tools$reade
 cljs.tools.reader.reader_types.IndexingPushbackReader.prototype.cljs$tools$reader$reader_types$Reader$read_char$arity$1 = (function (reader){
 var self__ = this;
 var reader__$1 = this;
-var temp__5457__auto__ = cljs.tools.reader.reader_types.read_char.call(null,self__.rdr);
-if(cljs.core.truth_(temp__5457__auto__)){
-var ch = temp__5457__auto__;
+var temp__5720__auto__ = cljs.tools.reader.reader_types.read_char.call(null,self__.rdr);
+if(cljs.core.truth_(temp__5720__auto__)){
+var ch = temp__5720__auto__;
 var ch__$1 = cljs.tools.reader.reader_types.normalize_newline.call(null,self__.rdr,ch);
 self__.prev = self__.line_start_QMARK_;
 
@@ -483,9 +483,9 @@ return cljs.core.subs.call(null,cljs.core.str.cljs$core$IFn$_invoke$arity$1(new 
  * Logs `char` to all currently active source logging frames.
  */
 cljs.tools.reader.reader_types.log_source_char = (function cljs$tools$reader$reader_types$log_source_char(frames,char$){
-var temp__5457__auto__ = new cljs.core.Keyword(null,"buffer","buffer",617295198).cljs$core$IFn$_invoke$arity$1(frames);
-if(cljs.core.truth_(temp__5457__auto__)){
-var buffer = temp__5457__auto__;
+var temp__5720__auto__ = new cljs.core.Keyword(null,"buffer","buffer",617295198).cljs$core$IFn$_invoke$arity$1(frames);
+if(cljs.core.truth_(temp__5720__auto__)){
+var buffer = temp__5720__auto__;
 return buffer.append(char$);
 } else {
 return null;
@@ -496,9 +496,9 @@ return null;
  * logging frames. Called when pushing a character back.
  */
 cljs.tools.reader.reader_types.drop_last_logged_char = (function cljs$tools$reader$reader_types$drop_last_logged_char(frames){
-var temp__5457__auto__ = new cljs.core.Keyword(null,"buffer","buffer",617295198).cljs$core$IFn$_invoke$arity$1(frames);
-if(cljs.core.truth_(temp__5457__auto__)){
-var buffer = temp__5457__auto__;
+var temp__5720__auto__ = new cljs.core.Keyword(null,"buffer","buffer",617295198).cljs$core$IFn$_invoke$arity$1(frames);
+if(cljs.core.truth_(temp__5720__auto__)){
+var buffer = temp__5720__auto__;
 return buffer.set(cljs.core.subs.call(null,cljs.core.str.cljs$core$IFn$_invoke$arity$1(buffer),(0),(buffer.getLength() - (1))));
 } else {
 return null;
@@ -526,9 +526,9 @@ cljs.tools.reader.reader_types.SourceLoggingPushbackReader.prototype.cljs$tools$
 cljs.tools.reader.reader_types.SourceLoggingPushbackReader.prototype.cljs$tools$reader$reader_types$Reader$read_char$arity$1 = (function (reader){
 var self__ = this;
 var reader__$1 = this;
-var temp__5457__auto__ = cljs.tools.reader.reader_types.read_char.call(null,self__.rdr);
-if(cljs.core.truth_(temp__5457__auto__)){
-var ch = temp__5457__auto__;
+var temp__5720__auto__ = cljs.tools.reader.reader_types.read_char.call(null,self__.rdr);
+if(cljs.core.truth_(temp__5720__auto__)){
+var ch = temp__5720__auto__;
 var ch__$1 = cljs.tools.reader.reader_types.normalize_newline.call(null,self__.rdr,ch);
 self__.prev = self__.line_start_QMARK_;
 
@@ -645,8 +645,8 @@ return (new cljs.tools.reader.reader_types.StringReader(s,cljs.core.count.call(n
  * Creates a PushbackReader from a given string
  */
 cljs.tools.reader.reader_types.string_push_back_reader = (function cljs$tools$reader$reader_types$string_push_back_reader(var_args){
-var G__23459 = arguments.length;
-switch (G__23459) {
+var G__22701 = arguments.length;
+switch (G__22701) {
 case 1:
 return cljs.tools.reader.reader_types.string_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -678,8 +678,8 @@ return (new cljs.tools.reader.reader_types.PushbackReader((new cljs.tools.reader
  * Creates an IndexingPushbackReader from a given string or PushbackReader
  */
 cljs.tools.reader.reader_types.indexing_push_back_reader = (function cljs$tools$reader$reader_types$indexing_push_back_reader(var_args){
-var G__23462 = arguments.length;
-switch (G__23462) {
+var G__22704 = arguments.length;
+switch (G__22704) {
 case 1:
 return cljs.tools.reader.reader_types.indexing_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -716,8 +716,8 @@ cljs.tools.reader.reader_types.indexing_push_back_reader.cljs$lang$maxFixedArity
  * Creates a SourceLoggingPushbackReader from a given string or PushbackReader
  */
 cljs.tools.reader.reader_types.source_logging_push_back_reader = (function cljs$tools$reader$reader_types$source_logging_push_back_reader(var_args){
-var G__23465 = arguments.length;
-switch (G__23465) {
+var G__22707 = arguments.length;
+switch (G__22707) {
 case 1:
 return cljs.tools.reader.reader_types.source_logging_push_back_reader.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -760,10 +760,10 @@ while(true){
 if(cljs.tools.reader.impl.utils.newline_QMARK_.call(null,c)){
 return cljs.core.str.cljs$core$IFn$_invoke$arity$1(s);
 } else {
-var G__23467 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
-var G__23468 = s.append(c);
-c = G__23467;
-s = G__23468;
+var G__22709 = cljs.tools.reader.reader_types.read_char.call(null,rdr);
+var G__22710 = s.append(c);
+c = G__22709;
+s = G__22710;
 continue;
 }
 break;
@@ -795,4 +795,4 @@ return ret;
 }finally {cljs.core.swap_BANG_.call(null,reader.frames,cljs.core.update_in,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"offset","offset",296498311)], null),cljs.core.rest);
 }});
 
-//# sourceMappingURL=reader_types.js.map?rel=1544650582238
+//# sourceMappingURL=reader_types.js.map?rel=1545905835884
