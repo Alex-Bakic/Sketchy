@@ -13,8 +13,33 @@ body {
 	font-smoothing: antialiased;
 }
 
-.keyword-input {
+.comments {
 
-    width: 5px;
+    font: 16px 'Helvetica Neue';
+    color: #007BFF;
 
 }
+
+.ui-input {
+        margin-left: 25%;
+        align-items: center;
+        justify-content: center;
+    
+}
+
+.ui-header {
+
+       margin-left: 27%;
+       align-items:center;
+       justify-content: center;
+
+}
+   
+    
+.kw-btn {
+        
+      margin-bottom: 12px;
+      margin-right: 10px;
+  
+}
+

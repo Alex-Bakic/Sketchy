@@ -14,10 +14,10 @@ return re_frame.core.dispatch.call(null,new cljs.core.PersistentVector(null, 2, 
 sketchy.components.show_ideas.show_all_ideas = (function sketchy$components$show_ideas$show_all_ideas(){
 var db = re_frame.core.subscribe.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"db","db",993250759)], null));
 return cljs.core.into.call(null,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"div","div",1057191632),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"class","class",-2030961996),"row"], null)], null),cljs.core.map.call(null,((function (db){
-return (function (p1__28258_SHARP_,p2__28259_SHARP_){
-return (new cljs.core.PersistentVector(null,3,(5),cljs.core.PersistentVector.EMPTY_NODE,[sketchy.components.show_ideas.show_idea,p1__28258_SHARP_,p2__28259_SHARP_],null));
+return (function (p1__23797_SHARP_,p2__23798_SHARP_){
+return (new cljs.core.PersistentVector(null,3,(5),cljs.core.PersistentVector.EMPTY_NODE,[sketchy.components.show_ideas.show_idea,p1__23797_SHARP_,p2__23798_SHARP_],null));
 });})(db))
 ,cljs.core.keys.call(null,cljs.core.deref.call(null,db)),cljs.core.map.call(null,new cljs.core.Keyword(null,"idea","idea",-951312199),cljs.core.vals.call(null,cljs.core.deref.call(null,db)))));
 });
 
-//# sourceMappingURL=show_ideas.js.map?rel=1545932600949
+//# sourceMappingURL=show_ideas.js.map?rel=1546104241167

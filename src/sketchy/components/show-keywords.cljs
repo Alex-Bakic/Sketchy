@@ -4,10 +4,9 @@
 ;; should be a small grey-background with white text.
 ;; using the bootstrap label --> <span class="label label-default">Default</span>
 (defn show-keyword [id kw]
-  [:button {:class "btn btn-default"
+  [:button {:class "btn btn-info kw-btn"
             :on-click #(dispatch [:remove-keyword id kw])}
-    [:span {:class "label label-default"} 
-      kw]])
+    [:span [:h6 (str kw)]]])
 
 ;; the keywords will be the card subtitle of the overall card
 ;; showing the idea. 
@@ -18,5 +17,6 @@
 (defn show-all-keywords [id]
   (let [kws (subscribe [:keywords id])]
     (into [:div {:class "card-subtitle"}] 
-          (for [kw @kws] (show-keyword [id kw])))))
+          (for [kw @kws] 
+            [show-keyword id kw]))))
 

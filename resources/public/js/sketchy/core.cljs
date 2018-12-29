@@ -8,10 +8,13 @@
             [sketchy.subs :as s]))
 
 (defn ui []
-  [:div#ui
-    [add-idea]
-    [:h2 "All your ideas"]
-    [show-all-ideas]])
+  [:div {:class "ui"}
+   [:div {:class "ui-input"} 
+    [add-idea]]
+   [:div {:class "ui-header"}
+    [:h1 "All your ideas"]]
+   [:div {:class "ui-content"} 
+    [show-all-ideas]]])
 
 (defn ^:export start []
   (rf/dispatch-sync [:initialise])

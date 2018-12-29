@@ -18,7 +18,7 @@
          [:div {:class "input-group input-group-lg input-container "}
            [:input {:type "text"
                     :class "form-control add-idea"
-                    :placeholder "Enter some ideas you have"
+                    :placeholder "save something!"
                     :value @val
                     :on-change #(reset! val (-> % .-target .-value))}]
            [:button {:class "btn btn-default" 
