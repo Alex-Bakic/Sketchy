@@ -16,8 +16,11 @@
       ;; put the localstore todos into the coeffect 
       ;; under :local-store-todos
       (assoc cofx :local-store-ideas
-             ;; read in todos from localstore
-             ;; and process into a sorted map
+             ;; read in ideas from local storage
+             ;; add the entire sorted-map into the sorted-map
+             ;; into does a good job of not nesting if there is
+             ;; a sorted-map already present. If the user has had
+             ;; no previous session then we just return the map.
              (into (sorted-map)
                    (some->> (.getItem js/localStorage ls-key)
                             (cljs.reader/read-string))))))
@@ -44,9 +47,6 @@
   key to also show order as well as uniqueness. However, to be 
   able to know and assume they are sorted means , for example,
   that in the views section we can just loop over it and render
-  each element as it comes. After a while the user will want to
-  delete items and will leave gaps in the ids we use, so if were
-  going to use ids and loop over items we may accidentally render
-  a lot of nil items and thus that is another case we have to cover.
+  each element as it comes.
 
 ")

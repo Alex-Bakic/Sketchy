@@ -20,4 +20,4 @@ return (new cljs.core.PersistentVector(null,3,(5),cljs.core.PersistentVector.EMP
 ,cljs.core.keys.call(null,cljs.core.deref.call(null,db)),cljs.core.map.call(null,new cljs.core.Keyword(null,"idea","idea",-951312199),cljs.core.vals.call(null,cljs.core.deref.call(null,db)))));
 });
 
-//# sourceMappingURL=show_ideas.js.map?rel=1546104241167
+//# sourceMappingURL=show_ideas.js.map?rel=1546164281772

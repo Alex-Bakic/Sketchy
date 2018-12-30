@@ -5,8 +5,7 @@
 ;; other subscriptions can actually use subscriptions
 ;; to simplify the computations of finding specific information
 ;; so this is the sub that keeps the last id, so no other sub
-;; has to keep doing the computation. If it changes then other
-;; subs are notified and will update accordingly.
+;; has to keep doing the computation. 
 (reg-sub
   :last-id
   (fn [db [_ _]]
@@ -35,4 +34,5 @@
   :keywords
   (fn [db [_ id]]
     (get-in db [id :keywords])))
+
 

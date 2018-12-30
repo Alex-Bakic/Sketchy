@@ -1,8 +1,6 @@
 (ns sketchy.components.show-keywords 
   (:require [re-frame.core :refer [dispatch subscribe]]))
 
-;; should be a small grey-background with white text.
-;; using the bootstrap label --> <span class="label label-default">Default</span>
 (defn show-keyword [id kw]
   [:button {:class "btn btn-info kw-btn"
             :on-click #(dispatch [:remove-keyword id kw])}

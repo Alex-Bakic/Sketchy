@@ -13,7 +13,7 @@
         id (rf/subscribe [:last-id])]
     ;; if you're using let forms to define data, you need to return a render fn
     (fn []
-      [:div {:class "row center"}
+      [:div {:class "row "}
         [:div {:class "col-lg-6"} 
          [:div {:class "input-group input-group-lg input-container "}
            [:input {:type "text"

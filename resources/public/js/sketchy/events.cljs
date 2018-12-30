@@ -33,10 +33,6 @@
 ;; EVENT HANDLERS
 ;;
 
-;;increment the last id to add new ideas
-(defn inc-id [db]
-  (inc (last (keys db))))
-
 ;; adding an idea to the db
 (rf/reg-event-db
   :add-idea
@@ -44,7 +40,7 @@
   (fn [db [_ id idea]]
     (assoc db id {:idea idea :comments [] :keywords []})))
 
-  ;; remove an idea given the id 
+;; remove an idea given the id 
   (rf/reg-event-db
    :remove-idea
    [->storage]
@@ -58,6 +54,14 @@
   (fn [db [_ id comment]]
     (update-in db [id :comments] conj comment)))
 
+;; add a keyword to the db given the id and the data
+(rf/reg-event-db
+  :add-keyword
+  [->storage]
+  (fn [db [_ id kw]]
+    (update-in db [id :keywords] conj kw)))
+
+
 ;; find the comment out of the vector and remove it
 (defn delete-item
   [db meta-data]
@@ -70,12 +74,6 @@
   (fn [db [_ id comment]]
      (update-in db [id :comments] delete-item comment)))
 
-;; add a keyword to the db given the id and the data
-(rf/reg-event-db
-  :add-keyword
-  [->storage]
-  (fn [db [_ id kw]]
-    (update-in db [id :keywords] conj kw)))
 
 ;; remove a keyword from the db given the id and the data
 (rf/reg-event-db
