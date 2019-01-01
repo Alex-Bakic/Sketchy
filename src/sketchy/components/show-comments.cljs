@@ -14,5 +14,5 @@
 (defn show-all-comments [id]
   (let [comments (subscribe [:comments id])] 
     [:div {:class "card-body"}
-      (into [:ul {:class "list-group"} [:li {:class "list-group-item active"} [add-comment id]]] 
-            (for [comment @comments] (show-comment id comment)))]))
+      (into [:ul {:class "list-group"} [add-comment id]] 
+            (for [comment @comments] [show-comment id comment]))]))
